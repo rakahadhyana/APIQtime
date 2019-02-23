@@ -11,6 +11,14 @@ var doctorSchema = mongoose.Schema({
         required: true
     },
     location:{
+        latitude:{
+            type: String
+        },
+        longitude:{
+            type: String
+        }
+    },
+    image:{
         type: String
     }
 });
