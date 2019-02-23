@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 Doctor = require('./models/doctor');
 
-mongoose.connect('mongodb://localhost/qtime');
+mongoose.connect('mongodb://raka:raka24@ds349175.mlab.com:49175/qtime');
 var db = mongoose.connection;
 
 app.get('/', function(req, res){
