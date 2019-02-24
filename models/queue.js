@@ -35,7 +35,7 @@ module.exports.getQueuesByDoctor = function(doctor, callback){
 }
 
 module.exports.getQueueByUser = function(user, callback){
-    Queue.find({user: user}, callback);
+    Queue.findOne({user: user}, callback);
 }
 
 module.exports.addQueue = function(queue, callback){
