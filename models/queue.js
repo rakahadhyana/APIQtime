@@ -31,11 +31,14 @@ module.exports.getQueuesById = function(id, callback){
 }
 
 module.exports.getQueuesByDoctor = function(doctor, callback){
-    Queue.find({ doctor: doctor}, callback);
+    Queue.find({doctor: doctor}, callback);
 }
 
 module.exports.getQueueByUser = function(user, callback){
-    Queue.findOne({user: user}, callback);
+    Queue.findOne({
+        user: user,
+        done: false
+    }, callback);
 }
 
 module.exports.addQueue = function(queue, callback){
