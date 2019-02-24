@@ -44,6 +44,16 @@ app.get('/api/queue/doctor/:doctor', function(req, res){
     });
 });
 
+app.get('/api/queue/user/:email', function(req, res){
+    var user = req.params.email;
+    Queue.getQueueByUser(user, function(err, queue){
+        if(err){
+            throw err;
+        }
+        res.json({queue: queue});
+    });
+});
+
 app.get('/api/queue/:_id', function(req,res){
     var id = req.params._id;
     Queue.getQueuesById(id, function(err, queue){
