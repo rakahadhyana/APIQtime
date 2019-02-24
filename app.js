@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 Doctor = require('./models/doctor');
+Queue = require('./models/queue');
 
 mongoose.connect('mongodb://raka:raka24@ds349175.mlab.com:49175/qtime');
 var db = mongoose.connection;

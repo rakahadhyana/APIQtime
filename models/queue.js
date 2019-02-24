@@ -7,7 +7,7 @@ var queueSchema = mongoose.Schema({
         require: true
     },
     doctor:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: true
     },
     take_time:{
