@@ -22,6 +22,22 @@ var queueSchema = mongoose.Schema({
 
 var Queue = module.exports = mongoose.model('Queue', queueSchema);
 
+module.exports.getQueues = function(callback, limit){
+    Queue.find(callback).limit(limit);
+}
+
+module.exports.getQueuesById = function(id, callback){
+    Queue.findById(id, callback);
+}
+
+module.exports.getQueuesByDoctor = function(doctor, callback){
+    Queue.find({ doctor: doctor}, callback);
+}
+
 module.exports.addQueue = function(queue, callback){
     Queue.create(queue, callback);
+}
+
+module.exports.updateQueue = function(queue,done,callback){
+    Queue.update({_id: queue}, {done: done},callback);
 }

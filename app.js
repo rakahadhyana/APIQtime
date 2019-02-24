@@ -25,13 +25,45 @@ app.get('/api/doctors', function(req, res){
 });
 
 app.get('/api/doctors/:_id', function(req, res){
-    Doctor.getDoctorById(req.params._id, function(err, doctor){
+    var id = req.params._id;
+    Doctor.getDoctorById(id, function(err, doctor){
         if(err){
             throw err;
         }
         res.json({doctor: doctor});
     });
 });
+
+app.get('/api/queue/doctor/:doctor', function(req, res){
+    var doctor = req.params.doctor;
+    Queue.getQueuesByDoctor(doctor, function(err, queues){
+        if(err){
+            throw err;
+        }
+        res.json({queues: queues});
+    });
+});
+
+app.get('/api/queue/:_id', function(req,res){
+    var id = req.params._id;
+    Queue.getQueuesById(id, function(err, queue){
+        if(err){
+            throw err;
+        }
+        res.json({queue: queue});
+    })
+});
+
+
+app.get('/api/queue', function(req,res){
+    Queue.getQueues(function(err, queues){
+        if(err){
+            throw err;
+        }
+        res.json({queues: queues});
+    })
+});
+
 
 app.post('/api/queue', function(req, res){
     var queue = req.body;
@@ -41,6 +73,19 @@ app.post('/api/queue', function(req, res){
         }
         res.json(queue);
     });
+});
+
+app.post('/api/queue/done', function(req, res){
+    var id = req.body._id;
+    var done = req.body.done;
+    console.log(req.body);
+    console.log(done);
+    Queue.updateQueue(id, done, function(err, queue){
+        if(err){
+            throw err;
+        }
+        res.json(queue);
+    })
 });
 
 app.listen(process.env.PORT || 3000);
